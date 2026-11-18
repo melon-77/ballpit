@@ -13,9 +13,9 @@ mount -a                          # the rest of /etc/fstab
 echo "Setting hostname: $(cat /etc/HOSTNAME)"
 hostname -F /etc/HOSTNAME
 
-# Let mdev handle hotplug events
-echo /sbin/mdev > /proc/sys/kernel/hotplug
+# Fill /dev, then keep mdev running to handle hotplug events (it listens on netlink)
 mdev -s
+mdev -d
 
 ifconfig lo 127.0.0.1 up
 
