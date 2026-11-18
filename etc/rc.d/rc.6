@@ -1,0 +1,15 @@
+#!/bin/sh
+# /etc/rc.d/rc.6 -- shutdown. Called by init on halt/reboot/poweroff.
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+export PATH
+
+echo "Sending all processes the TERM signal"
+killall5 -15
+sleep 1
+echo "Sending all processes the KILL signal"
+killall5 -9
+
+echo "Unmounting filesystems"
+sync
+umount -a -r 2>/dev/null

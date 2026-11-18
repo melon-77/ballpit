@@ -1,0 +1,15 @@
+# /etc/profile -- system-wide login shell setup.
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin
+export PAGER=less
+export EDITOR=vi
+umask 022
+
+if [ "$(id -u)" = 0 ]; then
+  PS1='\h:\w# '
+else
+  PS1='\u@\h:\w$ '
+fi
+export PS1
+
+alias ls='ls --color=auto'
+alias ll='ls -l'

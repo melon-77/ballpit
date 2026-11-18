@@ -1,0 +1,13 @@
+# /etc/inittab -- busybox init. Format: <tty>::<action>:<process>
+# No runlevels here; rc.S brings up the system, rc.M goes multiuser.
+
+::sysinit:/etc/rc.d/rc.S
+::wait:/etc/rc.d/rc.M
+
+# Login prompts
+ttyS0::respawn:/sbin/getty -L 115200 ttyS0 vt100
+tty1::respawn:/sbin/getty 38400 tty1
+tty2::respawn:/sbin/getty 38400 tty2
+
+::ctrlaltdel:/sbin/reboot
+::shutdown:/etc/rc.d/rc.6
